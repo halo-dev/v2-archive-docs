@@ -20,18 +20,18 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 创建容器组
 
-可用的 Halo 2.15 的 Docker 镜像：
+可用的 Halo 2.9 的 Docker 镜像：
 
 - [halohub/halo](https://hub.docker.com/r/halohub/halo)
 - [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
 
 :::info 注意
-目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.15` 或者 `halohub/halo:2.15.0`。
+目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.9` 或者 `halohub/halo:2.9.0`。
 
-- `halohub/halo:2.15`：表示最新的 2.15.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.15` 镜像。
-- `halohub/halo:2.15.0`：表示一个具体的版本。
+- `halohub/halo:2.9`：表示最新的 2.9.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.9` 镜像。
+- `halohub/halo:2.9.0`：表示一个具体的版本。
 
-后续文档以 `halohub/halo:2.15` 为例。
+后续文档以 `halohub/halo:2.9` 为例。
 :::
 
 1. 在系统任意位置创建一个文件夹，此文档以 `~/halo` 为例。
@@ -54,12 +54,13 @@ import DockerArgs from "./slots/docker-args.md"
 
     1. 创建 Halo + PostgreSQL 的实例：
 
-    ```yaml {23-29,43} title="~/halo/docker-compose.yaml"
+    ```yaml {24-30,47} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
       halo:
-        image: halohub/halo:2.15
+        image: halohub/halo:2.9
+        container_name: halo
         restart: on-failure:3
         depends_on:
           halodb:
@@ -67,7 +68,7 @@ import DockerArgs from "./slots/docker-args.md"
         networks:
           halo_network:
         volumes:
-          - ./halo2:/root/.halo2
+          - ./:/root/.halo2
         ports:
           - "8090:8090"
         healthcheck:
@@ -86,11 +87,14 @@ import DockerArgs from "./slots/docker-args.md"
           - --halo.external-url=http://localhost:8090/
       halodb:
         image: postgres:15.4
+        container_name: halodb
         restart: on-failure:3
         networks:
           halo_network:
         volumes:
           - ./db:/var/lib/postgresql/data
+        ports:
+          - "5432:5432"
         healthcheck:
           test: [ "CMD", "pg_isready" ]
           interval: 10s
@@ -106,18 +110,15 @@ import DockerArgs from "./slots/docker-args.md"
       halo_network:
     ```
 
-    :::info
-    此示例的 PostgreSQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，PostgreSQL 的端口为 `5432`。
-    :::
-
     2. 创建 Halo + MySQL 的实例：
 
-    ```yaml {23-29,51} title="~/halo/docker-compose.yaml"
+    ```yaml {24-30,55} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
       halo:
-        image: halohub/halo:2.15
+        image: halohub/halo:2.9
+        container_name: halo
         restart: on-failure:3
         depends_on:
           halodb:
@@ -125,7 +126,7 @@ import DockerArgs from "./slots/docker-args.md"
         networks:
           halo_network:
         volumes:
-          - ./halo2:/root/.halo2
+          - ./:/root/.halo2
         ports:
           - "8090:8090"
         healthcheck:
@@ -144,18 +145,21 @@ import DockerArgs from "./slots/docker-args.md"
           - --halo.external-url=http://localhost:8090/
 
       halodb:
-        image: mysql:8.1.0
+        image: mysql:8.0.31
+        container_name: halodb
         restart: on-failure:3
         networks:
           halo_network:
         command: 
-          - --default-authentication-plugin=caching_sha2_password
+          - --default-authentication-plugin=mysql_native_password
           - --character-set-server=utf8mb4
           - --collation-server=utf8mb4_general_ci
           - --explicit_defaults_for_timestamp=true
         volumes:
           - ./mysql:/var/lib/mysql
           - ./mysqlBackup:/data/mysqlBackup
+        ports:
+          - "3306:3306"
         healthcheck:
           test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
           interval: 3s
@@ -170,25 +174,18 @@ import DockerArgs from "./slots/docker-args.md"
       halo_network:
     ```
 
-    :::info
-    此示例的 MySQL 数据库容器默认没有设置端口映射，如果需要在容器外部访问数据库，可以自行在 `halodb` 服务中添加端口映射，MySQL 的端口为 `3306`。
-    :::
-
-    3. 仅创建 Halo 实例（使用默认的 H2 数据库）：
-
-    :::caution
-    不推荐在生产环境使用默认的 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
-    :::
+    3. 仅创建 Halo 实例（使用默认的 H2 数据库，**不推荐用于生产环境，建议体验和测试的时候使用**）：
 
     ```yaml {19-24} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
       halo:
-        image: halohub/halo:2.15
+        image: halohub/halo:2.9
+        container_name: halo
         restart: on-failure:3
         volumes:
-          - ./halo2:/root/.halo2
+          - ./:/root/.halo2
         ports:
           - "8090:8090"
         healthcheck:
@@ -201,19 +198,19 @@ import DockerArgs from "./slots/docker-args.md"
           # 外部访问地址，请根据实际需要修改
           - --halo.external-url=http://localhost:8090/
     ```
-
     4. 仅创建 Halo 实例（使用已有外部数据库，MySQL 为例）：
     
-    ```yaml {7,12-20} title="~/halo/docker-compose.yaml"
+    ```yaml {8,12-20} title="~/halo/docker-compose.yaml"
     version: "3"
 
     services:
       halo:
-        image: halohub/halo:2.15
+        image: halohub/halo:2.9
+        container_name: halo
         restart: on-failure:3
         network_mode: "host"
         volumes:
-          - ./halo2:/root/.halo2
+          - ./:/root/.halo2
         command:
           # 修改为自己已有的 MySQL 配置
           - --spring.r2dbc.url=r2dbc:pool:mysql://localhost:3306/halo
@@ -250,15 +247,33 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 更新容器组
 
-1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
-2. 更新 Halo 服务
+1. 停止运行中的容器组
+
+  ```bash
+  cd ~/halo && docker-compose down
+  ```
+
+2. 备份数据（重要）
+
+  ```bash
+  cp -r ~/halo ~/halo.archive
+  ```
+
+  > 需要注意的是，`halo.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+
+3. 更新 Halo 服务
 
   修改 `docker-compose.yaml` 中配置的镜像版本。
 
   ```yaml {3}
   services:
     halo:
-      image: halohub/halo:2.15
+      image: halohub/halo:2.9
+      container_name: halo
+  ```
+
+  ```bash
+  docker-compose pull halo
   ```
 
   ```bash
@@ -322,10 +337,11 @@ networks:
 
 services:
   halo:
-    image: halohub/halo:2.15
+    image: halohub/halo:2.9
+    container_name: halo
     restart: on-failure:3
     volumes:
-      - ./halo2:/root/.halo2
+      - ./:/root/.halo2
     networks:
       - traefik
       - halo

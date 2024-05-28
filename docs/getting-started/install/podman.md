@@ -50,25 +50,25 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 通过[前言](#前言)我们已经了解了 Podman ，其中提到 ***Podman 与 Docker 高度兼容*** ，正是因为 Podman 完全是为了替代 Docker 而诞生，所以原本的 Docker 生态中的镜像我们可以无需更改直接使用。
 :::
 
-可用的 Halo 2.15 的 Docker 镜像：
+可用的 Halo 2.9 的 Docker 镜像：
 
 - [halohub/halo](https://hub.docker.com/r/halohub/halo)
 - [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
 
 :::info 注意
-目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.15` 或者 `halohub/halo:2.15.0`。
+目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.9` 或者 `halohub/halo:2.9.0`。
 
-- `halohub/halo:2.15`：表示最新的 2.15.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.15` 镜像。
-- `halohub/halo:2.15.0`：表示一个具体的版本。
+- `halohub/halo:2.9`：表示最新的 2.9.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.9` 镜像。
+- `halohub/halo:2.9.0`：表示一个具体的版本。
 
-后续文档以 `halohub/halo:2.15` 为例。
+后续文档以 `halohub/halo:2.9` 为例。
 :::
 
 1. 创建容器
 
     ```bash
     mkdir -p ~/.halo2
-    podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.15
+    podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.9
     ```
 
     :::info
@@ -93,27 +93,35 @@ Podman 采用无守护进程的包容性架构，因此可以更安全、更简�
 
 ## 升级版本
 
-1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
-2. 拉取新版本镜像
+1. 拉取新版本镜像
 
   ```bash
-  podman pull halohub/halo:2.15
+  podman pull halohub/halo:2.9
   ```
 
-3. 停止运行中的容器
+2. 停止运行中的容器
 
   ```bash
   podman stop halo
   podman rm halo
   ```
 
+3. 备份数据（重要）
+
+  ```bash
+  cp -r ~/.halo2 ~/halo2.archive
+  ```
+
+  > 需要注意的是，`halo2.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+
 4. 更新 Halo
 
   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
-   ```bash
-   podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.15
-   ```
+    ```bash
+    mkdir -p ~/.halo2
+    podman run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.9
+    ```
 
 ## 使用 [Podman Quadlet](https://docs.podman.io/en/latest/markdown/podman-systemd.unit.5.html)
 
@@ -148,7 +156,7 @@ Podman 没有和 Docker 类似的管理进程，在低配置的主机上更友�
   Environment=TZ=Asia/Shanghai
   Volume=/opt/podman-data/halo:/.halo
   PublishPort=127.0.0.1:8090:8090
-  Image=ghcr.io/halo-dev/halo:2.15
+  Image=ghcr.io/halo-dev/halo:2.9
   Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
 
   [Service]
@@ -177,7 +185,7 @@ Podman Quadlet 解析:
 
 `[Container]` 部分:
 
-- `AutoUpdate=registry`指定了自动拉取容器。假设后续Halo镜像支持了`latest`标签，你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。本文示例`ghcr.io/halo-dev/halo:2.15`，将会自动更新适用与`2.15`版本的patch，例如您创建容器时是`2.15.1`，在官方发布`2.15.2`版本时，容器会自动更新到`2.15.2`。
+- `AutoUpdate=registry`指定了自动拉取容器。假设后续Halo镜像支持了`latest`标签，你需要`systemctl enable --now podman-auto-update.timer`以启用容器自动更新。本文示例`ghcr.io/halo-dev/halo:2.9`，将会自动更新适用与`2.9`版本的patch，例如您创建容器时是`2.9.1`，在官方发布`2.9.2`版本时，容器会自动更新到`2.9.2`。
 - `ContainerName=`指定了 systemd 将生成的服务名称。
 - `User=60000 Group=60000 UserNS=keep-id:uid=60000,gid=60000` 限制容器以 id 60000 的用户运行，提高安全性。注意这个id 60000请根据你实际想要运行的用户名来修改，可通过`id user`获得你的用户的id.
 - `Environment=`字段指定了容器的环境变量，其中你需要注意的是`Environment=HALO_WORK_DIR="/.halo"` `Environment=SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/.halo/"`这两个变量中的`/.halo`路径。
@@ -220,7 +228,7 @@ Podman Quadlet 解析:
   ContainerName=halo
   Volume=/opt/podman-data/halo:/root/.halo
   PublishPort=127.0.0.1:8090:8090
-  Image=ghcr.io/halo-dev/halo:2.15
+  Image=ghcr.io/halo-dev/halo:2.9
   Exec=--halo.external-url=https://localhost:8090 --spring.sql.init.platform=postgresql --spring.r2dbc.url=r2dbc:pool:postgresql://127.0.0.1:5432/my-db --spring.r2dbc.username=my-user --spring.r2dbc.password=my-password --halo.cache.page.disabled=false
 
   [Service]

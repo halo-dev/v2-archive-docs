@@ -96,11 +96,11 @@ networks:
 
 services:
   halo:
-    image: halohub/halo:2.15
+    image: halohub/halo:2.9
     container_name: halo
     restart: on-failure:3
     volumes:
-      - ./halo2:/root/.halo2
+      - ./:/root/.halo2
     networks:
       - traefik
       - halo

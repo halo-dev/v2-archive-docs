@@ -21,7 +21,6 @@ Halo 在本地开发环境的运行可参考[开发环境运行](../core/run.md)
   ```
 
 - 使用 Docker 运行时，需要添加 `SPRING_THYMELEAF_CACHE=false` 的环境变量。
-
 :::
 
 ## 新建一个主题
@@ -32,25 +31,20 @@ Halo 的主题存放于工作目录的 `themes` 目录下，即 `~/halo2-dev/the
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  # 此字段的值需要和主题文件夹名称一致，否则可能导致部分资源无法正常加载。
   name: theme-foo
 spec:
   displayName: 示例主题
   author:
-    name: Halo
-    website: https://www.halo.run
+    name: halo-dev
+    website: https://halo.run
   description: 一个示例主题
-  logo: https://www.halo.run/logo
-  homepage: https://github.com/halo-sigs/theme-foo
+  logo: https://halo.run/logo
+  website: https://github.com/halo-sigs/theme-foo
   repo: https://github.com/halo-sigs/theme-foo.git
-  issues: https://github.com/halo-sigs/theme-foo/issues
   settingName: "theme-foo-setting"
   configMapName: "theme-foo-configMap"
   version: 1.0.0
-  requires: 2.0.0
-  license:
-    - name: "GPL-3.0"
-      url: "https://github.com/halo-sigs/theme-foo/blob/main/LICENSE"
+  require: 2.0.0
 ```
 
 :::info 提示
@@ -71,8 +65,6 @@ spec:
 
 :::info 提示
 以上 GitHub 都被设置为了模板仓库（Template repository），点击仓库主页的 `Use this template` 按钮即可通过此模板创建一个新的仓库。
-
-创建新的主题仓库并克隆到本地开发环境之后，需要确保主题文件夹名称和 `theme.yaml` 中的 `metadata.name` 字段一致，否则可能导致部分资源无法正常加载。
 :::
 
 ## 创建第一个页面模板

@@ -9,8 +9,8 @@ import DockerArgs from "./slots/docker-args.md"
 在继续操作之前，我们推荐您先阅读[《写在前面》](../prepare)，这可以快速帮助你了解 Halo。
 :::
 
-:::caution
-此文档仅提供使用默认 H2 数据库的 Docker 运行方式，主要用于体验和测试，在生产环境我们不推荐使用 H2 数据库，这可能因为操作不当导致数据文件损坏。如果因为某些原因（如内存不足以运行独立数据库）必须要使用，建议按时[备份数据](../../user-guide/backup.md)。
+:::tip
+此文档仅提供使用默认 H2 数据库的 Docker 运行方式，主要用于体验和测试，在生产环境我们不推荐使用 H2 数据库。
 
 如果需要使用其他数据库部署，我们推荐使用 Docker Compose 部署：[使用 Docker Compose 部署](./docker-compose)
 :::
@@ -25,24 +25,24 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 使用 Docker 镜像
 
-可用的 Halo 2.15 的 Docker 镜像：
+可用的 Halo 2.9 的 Docker 镜像：
 
 - [halohub/halo](https://hub.docker.com/r/halohub/halo)
 - [ghcr.io/halo-dev/halo](https://github.com/halo-dev/halo/pkgs/container/halo)
 
 :::info 注意
-目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.15` 或者 `halohub/halo:2.15.0`。
+目前 Halo 2 并未更新 Docker 的 latest 标签镜像，主要因为 Halo 2 不兼容 1.x 版本，防止使用者误操作。我们推荐使用固定版本的标签，比如 `halohub/halo:2.9` 或者 `halohub/halo:2.9.0`。
 
-- `halohub/halo:2.15`：表示最新的 2.15.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.15` 镜像。
-- `halohub/halo:2.15.0`：表示一个具体的版本。
+- `halohub/halo:2.9`：表示最新的 2.9.x 版本，即每次发布 patch 版本都会同时更新 `halohub/halo:2.9` 镜像。
+- `halohub/halo:2.9.0`：表示一个具体的版本。
 
-后续文档以 `halohub/halo:2.15` 为例。
+后续文档以 `halohub/halo:2.9` 为例。
 :::
 
 1. 创建容器
 
     ```bash
-    docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.15
+    docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.9
     ```
 
     :::info
@@ -67,24 +67,31 @@ import DockerArgs from "./slots/docker-args.md"
 
 ## 升级版本
 
-1. 备份数据，可以参考 [备份与恢复](../../user-guide/backup.md) 进行完整备份。
-2. 拉取新版本镜像
+1. 拉取新版本镜像
 
   ```bash
-  docker pull halohub/halo:2.15
+  docker pull halohub/halo:2.9
   ```
 
-3. 停止运行中的容器
+2. 停止运行中的容器
 
   ```bash
   docker stop halo
   docker rm halo
   ```
 
+3. 备份数据（重要）
+
+  ```bash
+  cp -r ~/.halo2 ~/halo2.archive
+  ```
+
+  > 需要注意的是，`halo2.archive` 文件名不一定要根据此文档命名，这里仅仅是个示例。
+
 4. 更新 Halo
 
   修改版本号后，按照最初安装的方式，重新创建容器即可。
 
     ```bash
-    docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.15
+    docker run -it -d --name halo -p 8090:8090 -v ~/.halo2:/root/.halo2 halohub/halo:2.9
     ```

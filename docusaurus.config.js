@@ -3,9 +3,9 @@ const VersionsArchived = require("./versionsArchived.json");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Halo 文档",
-  tagline: "Halo 的文档站点",
-  url: "https://docs.halo.run",
+  title: "Halo 2.x 已归档文档",
+  tagline: "Halo 2.x 已归档的文档站点",
+  url: "https://v2-archive-docs.halo.run",
   baseUrl: "/",
   favicon: "img/favicon-96x96.png",
   i18n: {
@@ -23,17 +23,11 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.com/halo-dev/docs/edit/main/",
+          editUrl: "https://github.com/halo-dev/v2-archive-docs/edit/main/",
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.15",
-          versions: {
-            current: {
-              label: "2.16.0-SNAPSHOT",
-              path: "2.16.0-SNAPSHOT",
-            },
-          },
+          lastVersion: "2.9",
         },
         blog: false,
         theme: {
@@ -42,21 +36,6 @@ const config = {
         sitemap: {
           changefreq: "weekly",
           priority: 0.5,
-          ignorePatterns: [
-            "/2.0/**",
-            "/2.1/**",
-            "/2.2/**",
-            "/2.3/**",
-            "/2.4/**",
-            "/2.5/**",
-            "/2.6/**",
-          ],
-        },
-        googleAnalytics: {
-          trackingID: "UA-110780416-7",
-        },
-        gtag: {
-          trackingID: "UA-110780416-7",
         },
       }),
     ],
@@ -71,7 +50,7 @@ const config = {
         },
       },
       navbar: {
-        title: "Halo 文档",
+        title: "Halo 2.x 已归档文档",
         logo: {
           alt: "Halo Logo",
           src: "https://halo.run/upload/2021/03/Adaptive256-463ca9b92e2d40268431018c07735842.png",
@@ -93,6 +72,12 @@ const config = {
             type: "docsVersionDropdown",
             position: "right",
             dropdownActiveClassDisabled: true,
+            dropdownItemsBefore: [
+              {
+                label: "Halo 2.x 最新版本文档",
+                href: "https://docs.halo.run",
+              },
+            ],
             dropdownItemsAfter: [
               ...Object.entries(VersionsArchived).map(
                 ([versionName, versionUrl]) => ({
@@ -202,51 +187,19 @@ const config = {
     [
       "@docusaurus/plugin-client-redirects",
       {
-        redirects: [
-          {
-            to: "/getting-started/install/docker",
-            from: ["/zh/install/docker", "/install/docker"],
-          },
-          {
-            to: "/getting-started/prepare",
-            from: ["/zh/install/prepare", "/install/prepare"],
-          },
-          {
-            to: "/developer-guide/core/structure",
-            from: ["/zh/developer-guide/core", "/developer-guide/core"],
-          },
-          {
-            to: "/developer-guide/theme/prepare",
-            from: ["/zh/developer-guide/theme", "/developer-guide/theme"],
-          },
-          {
-            to: "/contribution/issue",
-            from: ["/zh/contribution/issue"],
-          },
-          {
-            to: "/contribution/pr",
-            from: ["/zh/contribution/pr"],
-          },
-        ],
         createRedirects(existingPath) {
-          if (existingPath.startsWith("/2.16.0-SNAPSHOT/")) {
+          if (existingPath.startsWith("/next/")) {
             return [
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.0.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.1.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.2.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.3.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.4.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.5.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.6.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.7.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.8.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.9.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.10.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.11.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.12.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.13.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.14.0-SNAPSHOT/"),
-              existingPath.replace("/2.16.0-SNAPSHOT/", "/2.15.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.0.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.1.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.2.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.3.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.4.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.5.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.6.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.7.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.8.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.9.0-SNAPSHOT/"),
             ];
           }
           return undefined;
@@ -271,13 +224,6 @@ const config = {
       },
     }),
   },
-  scripts: [
-    {
-      src: "https://analytics.halo.run/script.js",
-      async: true,
-      "data-website-id": "f9995c32-81e9-4e07-91f2-c276a0d63c9f",
-    },
-  ],
 };
 
 module.exports = config;
