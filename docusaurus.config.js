@@ -27,7 +27,7 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.9",
+          lastVersion: "2.15",
         },
         blog: false,
         theme: {
@@ -200,6 +200,12 @@ const config = {
               existingPath.replace("/next/", "/2.7.0-SNAPSHOT/"),
               existingPath.replace("/next/", "/2.8.0-SNAPSHOT/"),
               existingPath.replace("/next/", "/2.9.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.10.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.11.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.12.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.13.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.14.0-SNAPSHOT/"),
+              existingPath.replace("/next/", "/2.15.0-SNAPSHOT/"),
             ];
           }
           return undefined;
