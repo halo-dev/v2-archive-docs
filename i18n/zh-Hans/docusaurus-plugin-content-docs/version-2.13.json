@@ -1,7 +1,7 @@
 {
   "version.label": {
-    "message": "Next",
-    "description": "The label for version current"
+    "message": "2.13",
+    "description": "The label for version 2.13"
   },
   "sidebar.tutorial.category.入门": {
     "message": "入门",
@@ -10,10 +10,6 @@
   "sidebar.tutorial.category.安装指南": {
     "message": "安装指南",
     "description": "The label for category 安装指南 in sidebar tutorial"
-  },
-  "sidebar.tutorial.category.云平台": {
-    "message": "云平台",
-    "description": "The label for category 云平台 in sidebar tutorial"
   },
   "sidebar.tutorial.category.其他指南": {
     "message": "其他指南",
