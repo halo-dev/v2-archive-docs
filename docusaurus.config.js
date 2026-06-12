@@ -27,7 +27,7 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.17",
+          lastVersion: "2.19",
         },
         blog: false,
         theme: {
