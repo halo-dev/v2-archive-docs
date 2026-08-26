@@ -21,7 +21,7 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 - 目前 Halo 2.0 仅提供 Docker 部署方式，没有提供可执行 JAR 包。
 - 可以考虑先在本地运行一个 Halo 2.0，模拟一下导入，检查导入后是否满足要求。
 
-如果遇到了迁移过程中的问题，也可以向我们提交 Issue: <https://github.com/halo-dev/halo/issues/new/choose>，以上暂不支持的功能我们也会陆续完善。
+如果遇到了迁移过程中的问题，也可以向我们提交 Issue: [https://github.com/halo-dev/halo/issues/new/choose](https://github.com/halo-dev/halo/issues/new/choose)，以上暂不支持的功能我们也会陆续完善。
 
 ## 备份数据
 
@@ -50,7 +50,7 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 ## 安装迁移插件
 
-需要在 <https://github.com/halo-sigs/plugin-migrate/releases> 中下载最新版本的插件 JAR 包，然后在 Halo 2.0 的插件管理中安装即可，安装完成即可在左侧菜单中看到迁移菜单。
+需要在 [https://github.com/halo-sigs/plugin-migrate/releases](https://github.com/halo-sigs/plugin-migrate/releases) 中下载最新版本的插件 JAR 包，然后在 Halo 2.0 的插件管理中安装即可，安装完成即可在左侧菜单中看到迁移菜单。
 
 ![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
 

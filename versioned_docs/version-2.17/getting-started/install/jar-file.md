@@ -58,8 +58,8 @@ title: 使用 JAR 文件部署
 
    :::info
    以下是官方维护的下载地址：
-   1. <https://download.halo.run>
-   2. <https://github.com/halo-dev/halo/releases>
+   1. [https://download.halo.run](https://download.halo.run)
+   2. [https://github.com/halo-dev/halo/releases](https://github.com/halo-dev/halo/releases)
    :::
 
 4. 创建 [工作目录](../prepare#工作目录)

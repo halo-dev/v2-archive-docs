@@ -16,7 +16,7 @@ import TagVo from '../vo/_TagVo.md'
 
 #### 变量类型
 
-List<[#TagVo](#tagvo)>
+List&lt;[#TagVo](#tagvo)&gt;
 
 #### 示例
 

@@ -47,7 +47,7 @@ contributorFinder.getContributors(names)
 
 ### 返回值
 
-List<[#ContributorVo](#contributorvo)>
+List&lt;[#ContributorVo](#contributorvo)&gt;
 
 ### 示例
 

@@ -115,7 +115,7 @@ postFinder.listAll();
 
 ### 返回值
 
-List<[#ListedPostVo](#listedpostvo)>
+List&lt;[#ListedPostVo](#listedpostvo)&gt;
 
 ### 示例
 
@@ -144,7 +144,7 @@ postFinder.list(page, size);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult&lt;ListedPostVo&gt;](#listresultlistedpostvo)
 
 ### 示例
 
@@ -174,7 +174,7 @@ postFinder.listByCategory(page, size, categoryName);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult&lt;ListedPostVo&gt;](#listresultlistedpostvo)
 
 ### 示例
 
@@ -204,7 +204,7 @@ postFinder.listByTag(page, size, tag);
 
 ### 返回值
 
-[#ListResult<ListedPostVo\>](#listresultlistedpostvo)
+[#ListResult&lt;ListedPostVo&gt;](#listresultlistedpostvo)
 
 ### 示例
 
@@ -233,7 +233,7 @@ postFinder.archives(page, size);
 
 ### 返回值
 
-[#ListResult<PostArchiveVo\>](#listresultpostarchivevo)
+[#ListResult&lt;PostArchiveVo&gt;](#listresultpostarchivevo)
 
 ### 示例
 
@@ -271,7 +271,7 @@ postFinder.archives(page, size, year);
 
 ### 返回值
 
-[#ListResult<PostArchiveVo\>](#listresultpostarchivevo)
+[#ListResult&lt;PostArchiveVo&gt;](#listresultpostarchivevo)
 
 ### 示例
 
@@ -310,7 +310,7 @@ postFinder.archives(page, size, year, month);
 
 ### 返回值
 
-[#ListResult<PostArchiveVo\>](#listresultpostarchivevo)
+[#ListResult&lt;PostArchiveVo&gt;](#listresultpostarchivevo)
 
 ### 示例
 
@@ -377,7 +377,7 @@ postFinder.archives(page, size, year, month);
 - [#TagVo](#tagvo)
 - [#Contributor](#contributor)
 
-### ListResult<ListedPostVo\>
+### ListResult&lt;ListedPostVo&gt;
 
 ```json title="ListResult<ListedPostVo>"
 {
@@ -411,7 +411,7 @@ postFinder.archives(page, size, year, month);
 
 - [#ListedPostVo](#listedpostvo)
 
-### ListResult<PostArchiveVo\>
+### ListResult&lt;PostArchiveVo&gt;
 
 ```json title="ListResult<PostArchiveVo>"
 {

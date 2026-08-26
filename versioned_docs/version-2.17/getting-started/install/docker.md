@@ -18,7 +18,7 @@ import DockerRegistryList from "./slots/_docker-registry-list.md"
 
 ## 环境搭建
 
-- Docker 安装文档：<https://docs.docker.com/engine/install/>
+- Docker 安装文档：[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 :::tip
 我们推荐按照 Docker 官方文档安装 Docker，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。

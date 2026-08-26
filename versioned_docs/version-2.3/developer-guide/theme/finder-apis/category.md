@@ -48,7 +48,7 @@ categoryFinder.getByNames(names)
 
 ### 返回值
 
-List<[#CategoryVo](#categoryvo)>
+List&lt;[#CategoryVo](#categoryvo)&gt;
 
 ### 示例
 
@@ -75,7 +75,7 @@ categoryFinder.list(page,size)
 
 ### 返回值
 
-[#ListResult<CategoryVo\>](#listresultcategoryvo)
+[#ListResult&lt;CategoryVo&gt;](#listresultcategoryvo)
 
 ### 示例
 
@@ -103,7 +103,7 @@ categoryFinder.listAll()
 
 ### 返回值
 
-List<[#CategoryVo](#categoryvo)>
+List&lt;[#CategoryVo](#categoryvo)&gt;
 
 ### 示例
 
@@ -131,7 +131,7 @@ categoryFinder.listAsTree()
 
 ### 返回值
 
-List<[#CategoryTreeVo](#categorytreevo)>
+List&lt;[#CategoryTreeVo](#categorytreevo)&gt;
 
 ### 示例
 
@@ -162,7 +162,7 @@ List<[#CategoryTreeVo](#categorytreevo)>
 
 <CategoryVo />
 
-### ListResult<CategoryVo\>
+### ListResult&lt;CategoryVo&gt;
 
 ```json title="ListResult<CategoryVo>"
 {

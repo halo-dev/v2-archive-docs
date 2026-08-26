@@ -47,7 +47,7 @@ tagFinder.getByNames(names)
 
 ### 返回值
 
-List<[#TagVo](#tagvo)>
+List&lt;[#TagVo](#tagvo)&gt;
 
 ### 示例
 
@@ -74,7 +74,7 @@ tagFinder.list(page,size)
 
 ### 返回值
 
-[#ListResult<TagVo\>](#listresulttagvo)
+[#ListResult&lt;TagVo&gt;](#listresulttagvo)
 
 ### 示例
 
@@ -102,7 +102,7 @@ tagFinder.listAll()
 
 ### 返回值
 
-List<[#TagVo](#tagvo)>
+List&lt;[#TagVo](#tagvo)&gt;
 
 ### 示例
 
@@ -120,7 +120,7 @@ List<[#TagVo](#tagvo)>
 
 <TagVo />
 
-### ListResult<TagVo\>
+### ListResult&lt;TagVo&gt;
 
 ```json title="ListResult<TagVo>"
 {
