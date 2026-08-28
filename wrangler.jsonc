@@ -1,0 +1,8 @@
+{
+  "name": "v2-archive-docs",
+  "compatibility_date": "2026-08-28",
+  "assets": {
+    "directory": "./build",
+    "not_found_handling": "404-page"
+  }
+}
