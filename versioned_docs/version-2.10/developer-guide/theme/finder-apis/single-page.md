@@ -77,7 +77,7 @@ singlePageFinder.list(page,size)
 
 ### 返回值
 
-[#ListResult<ListedSinglePageVo\>](#listresultlistedsinglepagevo)
+[#ListResult&lt;ListedSinglePageVo&gt;](#listresultlistedsinglepagevo)
 
 ### 示例
 
@@ -104,7 +104,7 @@ singlePageFinder.list(page,size)
 
 <ListedSinglePageVo />
 
-### ListResult<ListedSinglePageVo\>
+### ListResult&lt;ListedSinglePageVo&gt;
 
 ```json title="ListResult<ListedSinglePageVo>"
 {

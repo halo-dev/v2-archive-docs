@@ -1,7 +1,7 @@
 [build.environment]
-  NODE_VERSION = "16"
+  NODE_VERSION = "22"
   NPM_FLAGS = "--version"
 
 [build]
   publish = "build"
-  command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm build"
+  command = "npx pnpm@10.34.5 install --no-lockfile --store=node_modules/.pnpm-store && npx pnpm@10.34.5 build"

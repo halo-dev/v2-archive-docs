@@ -1,4 +1,4 @@
-const darkCodeTheme = require("prism-react-renderer/themes/palenight");
+const { themes } = require("prism-react-renderer");
 const VersionsArchived = require("./versionsArchived.json");
 
 /** @type {import('@docusaurus/types').Config} */
@@ -14,6 +14,16 @@ const config = {
   },
   organizationName: "halo-dev", // Usually your GitHub org/user name.
   projectName: "halo", // Usually your repo name.
+  future: {
+    faster: true,
+    v4: true,
+  },
+  markdown: {
+    mdx1Compat: {
+      comments: true,
+      headingIds: true,
+    },
+  },
 
   presets: [
     [
@@ -27,7 +37,7 @@ const config = {
           routeBasePath: "/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
-          lastVersion: "2.21",
+          lastVersion: "2.25",
         },
         blog: false,
         theme: {
@@ -174,8 +184,8 @@ const config = {
         ],
       },
       prism: {
-        theme: darkCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: themes.palenight,
+        darkTheme: themes.palenight,
         additionalLanguages: ["java"],
       },
       zoom: {
@@ -213,23 +223,6 @@ const config = {
       },
     ],
   ],
-  webpack: {
-    jsLoader: (isServer) => ({
-      loader: require.resolve("swc-loader"),
-      options: {
-        jsc: {
-          parser: {
-            syntax: "typescript",
-            tsx: true,
-          },
-          target: "es2017",
-        },
-        module: {
-          type: isServer ? "commonjs" : "es6",
-        },
-      },
-    }),
-  },
 };
 
 module.exports = config;

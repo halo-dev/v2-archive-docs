@@ -9,9 +9,9 @@ title: 表单定义
 FormKit 相关文档：
 
 - Form Schema:
-  - <https://formkit.com/essentials/generation>
-  - <https://formkit.com/advanced/schema>
-- FormKit Inputs: <https://formkit.com/inputs>
+  - [https://formkit.com/essentials/generation](https://formkit.com/essentials/generation)
+  - [https://formkit.com/advanced/schema](https://formkit.com/advanced/schema)
+- FormKit Inputs: [https://formkit.com/inputs](https://formkit.com/inputs)
 
 :::tip
 目前不支持 FormKit Pro 中的输入组件，但 Halo 额外提供了部分输入组件，将在下面文档列出。

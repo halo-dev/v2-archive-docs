@@ -8,19 +8,19 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 - Halo 版本必须为 1.5.x 或 1.6.x。如果不满足，需要先升级到 1.5.x 或 1.6.x 版本。
 - Halo 2.0 不兼容 1.x 的主题，建议在升级前先查询你正在使用的主题是否已经支持 2.0。你可以访问 [halo-sigs/awesome-halo](https://github.com/halo-sigs/awesome-halo) 查阅目前支持的主题。
 - Halo 2.0 目前没有内置 Markdown 编辑器，如果需要重新编辑迁移后的文章，需要额外安装 Markdown 编辑器插件。目前社区已经提供了以下插件：
-  - <https://github.com/halo-sigs/plugin-bytemd>
-  - <https://github.com/halo-sigs/plugin-stackedit>
+  - [https://github.com/halo-sigs/plugin-bytemd](https://github.com/halo-sigs/plugin-bytemd)
+  - [https://github.com/halo-sigs/plugin-stackedit](https://github.com/halo-sigs/plugin-stackedit)
 - 暂时不支持友情链接、日志、图库的数据迁移，如果你在 1.x 版本中使用了这些功能，建议先暂缓迁移。
 - Halo 2.0 不在内置外部云存储的支持。需要安装额外的插件，目前官方已提供：
-  - <https://github.com/halo-sigs/plugin-alioss>
-  - <https://github.com/halo-sigs/plugin-s3>
+  - [https://github.com/halo-sigs/plugin-alioss](https://github.com/halo-sigs/plugin-alioss)
+  - [https://github.com/halo-sigs/plugin-s3](https://github.com/halo-sigs/plugin-s3)
 - 关于附件，目前仅支持将本地附件代理，不支持在后台管理，也不支持迁移外部云存储的附件。如果你对外部云存储的附件有强需求，建议先暂缓迁移。
 - 在迁移过程中不会保留旧版本的用户数据，迁移完成之后，关于文章等数据的关联都将改为 Halo 2.0 的新用户。
 - 为了防止直接升级 2.0 导致 1.x 的数据受到破坏，我们已经将工作目录由 `~/.halo` 变更为 `~/.halo2`。
 - 目前 Halo 2.0 仅提供 Docker 部署方式，没有提供可执行 JAR 包，但可以自编译，请参考 [构建](../developer-guide/core/build.md) 文档
 - 可以考虑先在本地运行一个 Halo 2.0，模拟一下导入，检查导入后是否满足要求。
 
-如果遇到了迁移过程中的问题，也可以向我们提交 Issue: <https://github.com/halo-dev/halo/issues/new/choose>，以上暂不支持的功能我们也会陆续完善。
+如果遇到了迁移过程中的问题，也可以向我们提交 Issue: [https://github.com/halo-dev/halo/issues/new/choose](https://github.com/halo-dev/halo/issues/new/choose)，以上暂不支持的功能我们也会陆续完善。
 
 ## 备份数据
 
@@ -49,7 +49,7 @@ description: 从 Halo 1.x 迁移的完整指南和注意事项
 
 ## 安装迁移插件
 
-需要在 <https://github.com/halo-sigs/plugin-migrate/releases> 中下载最新版本的插件 JAR 包，然后在 Halo 2.0 的插件管理中安装即可，安装完成即可在左侧菜单中看到迁移菜单。
+需要在 [https://github.com/halo-sigs/plugin-migrate/releases](https://github.com/halo-sigs/plugin-migrate/releases) 中下载最新版本的插件 JAR 包，然后在 Halo 2.0 的插件管理中安装即可，安装完成即可在左侧菜单中看到迁移菜单。
 
 ![Migrate Plugin](/img/migrate/halo2.0-migrate-plugin.png)
 

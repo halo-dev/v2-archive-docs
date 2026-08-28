@@ -22,7 +22,7 @@ import ListedPostVo from "../vo/_ListedPostVo.md";
 
 #### 变量类型
 
-[#UrlContextListResult<PostArchiveVo\>](#urlcontextlistresultpostarchivevo)
+[#UrlContextListResult&lt;PostArchiveVo&gt;](#urlcontextlistresultpostarchivevo)
 
 #### 示例
 
@@ -87,7 +87,7 @@ import ListedPostVo from "../vo/_ListedPostVo.md";
 
 - [#ListedPostVo](#listedpostvo)
 
-### UrlContextListResult<PostArchiveVo\>
+### UrlContextListResult&lt;PostArchiveVo&gt;
 
 ```json title="UrlContextListResult<PostArchiveVo>"
 {

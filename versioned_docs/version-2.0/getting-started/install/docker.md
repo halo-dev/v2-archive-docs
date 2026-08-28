@@ -17,7 +17,7 @@ import DockerEnv from "./slots/docker-env.md"
 
 ## 环境搭建
 
-- Docker 安装文档：<https://docs.docker.com/engine/install/>
+- Docker 安装文档：[https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
 :::tip
 我们推荐按照 Docker 官方文档安装 Docker，因为部分 Linux 发行版软件仓库中的 Docker 版本可能过旧。
@@ -58,7 +58,7 @@ import DockerEnv from "./slots/docker-env.md"
     - **-p**：端口映射，格式为 `主机(宿主)端口:容器端口` ，可在 `application.yaml` 配置。
     - **-v**：工作目录映射。形式为：`-v 宿主机路径:/root/.halo2`，后者不能修改。
     - **-e**：环境变量
-      - `HALO_EXTERNAL_URL`: 外部可访问的链接。例如：<https://域名/>
+      - `HALO_EXTERNAL_URL`: 外部可访问的链接。例如：[https://域名/](https://域名/)
       - `HALO_SECURITY_INITIALIZER_SUPERADMINUSERNAME`: 超级管理员用户名
       - `HALO_SECURITY_INITIALIZER_SUPERADMINPASSWORD`: 超级管理员用户（admin）的初始化密码。如果该环境变量没有设置，系统将会生成随机密码并打印在日志中。
 
